@@ -213,7 +213,7 @@ namespace RepositoryTutorial.Infrastructure
         #region [-- PAGINATION --]
 
         // return paginated list of mapped dtos -- format specific to Tanstack Table v8 (React, Vue)
-        public async Task<PaginatedResponse<TDto>> GetTanstackPaginatedResultsAsync<T, TDto, TId>(int pageNumber, int pageSize, ISpecification<T> specification = null, CancellationToken cancellationToken = default)
+        public async Task<PaginatedResponse<TDto>> GetPaginatedResultsAsync<T, TDto, TId>(int pageNumber, int pageSize, ISpecification<T> specification = null, CancellationToken cancellationToken = default)
             where T : BaseEntity<TId>
             where TDto : IDto
         {

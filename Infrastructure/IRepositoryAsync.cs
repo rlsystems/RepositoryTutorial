@@ -38,7 +38,7 @@ namespace RepositoryTutorial.Infrastructure
         Task<T> RemoveByIdAsync<T, TId>(TId entityId)
         where T : BaseEntity<TId>;
 
-        Task<PaginatedResponse<TDto>> GetTanstackPaginatedResultsAsync<T, TDto, TId>(int pageNumber, int pageSize, ISpecification<T>? specification = null, CancellationToken cancellationToken = default) // used by Tanstack Table (React, Vue)
+        Task<PaginatedResponse<TDto>> GetPaginatedResultsAsync<T, TDto, TId>(int pageNumber, int pageSize, ISpecification<T>? specification = null, CancellationToken cancellationToken = default) // used by Tanstack Table (React, Vue)
         where T : BaseEntity<TId>
         where TDto : IDto;
 

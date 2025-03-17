@@ -15,7 +15,6 @@ namespace RepositoryTutorial.Infrastructure
             _ = CreateMap<UpdateProductRequest, Product>();
 
             // add new entity mappings here...
-
         }
     }
 }

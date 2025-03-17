@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using RepositoryTutorial.Common;
 using RepositoryTutorial.Services.ProductService;
 using RepositoryTutorial.Services.ProductService.DTOs;
+using RepositoryTutorial.Services.ProductService.Filters;
 
 
 namespace RepositoryTutorial.WebApi.Controllers
@@ -33,6 +34,14 @@ namespace RepositoryTutorial.WebApi.Controllers
         {
             Response<ProductDTO> result = await _ProductService.GetProductAsync(id);
             return Ok(result);
+        }
+
+        // paginated & filtered list (Tanstack Table v8)
+        [HttpPost("products-paginated")]
+        public async Task<IActionResult> GetProductsPaginatedAsync(ProductTableFilter filter)
+        {
+            PaginatedResponse<ProductDTO> products = await _ProductService.GetProductsPaginatedAsync(filter);
+            return Ok(products);
         }
 
         // create

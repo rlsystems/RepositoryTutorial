@@ -4,6 +4,7 @@ using RepositoryTutorial.Common;
 using RepositoryTutorial.Domain;
 using RepositoryTutorial.Infrastructure;
 using RepositoryTutorial.Services.ProductService.DTOs;
+using RepositoryTutorial.Services.ProductService.Filters;
 using RepositoryTutorial.Services.ProductService.Specifications;
 
 namespace RepositoryTutorial.Services.ProductService
@@ -40,6 +41,20 @@ namespace RepositoryTutorial.Services.ProductService
             {
                 return Response<ProductDTO>.Fail(ex.Message);
             }
+        }
+
+        // get Tanstack Table paginated list (as seen in the React and Vue project tables)
+        public async Task<PaginatedResponse<ProductDTO>> GetProductsPaginatedAsync(ProductTableFilter filter)
+        {
+            if (!string.IsNullOrEmpty(filter.Keyword)) // set to first page if any search filters are applied
+            {
+                filter.PageNumber = 1;
+            }
+
+            ProductSearchList specification = new(filter?.Keyword); // ardalis specification
+            PaginatedResponse<ProductDTO> pagedResponse = await _repository.GetPaginatedResultsAsync<Product, ProductDTO, Guid>(filter.PageNumber, filter.PageSize, specification); // paginated response, entity mapped to dto
+            return pagedResponse;
+
         }
 
         // create new Product

@@ -8,7 +8,6 @@ namespace RepositoryTutorial.Application.Services.ProductService.Specifications
     {
         public ProductSearchList(string? keyword = "")
         {
-
             // filters
             if (!string.IsNullOrWhiteSpace(keyword))
             {
@@ -16,7 +15,6 @@ namespace RepositoryTutorial.Application.Services.ProductService.Specifications
             }
 
             _ = Query.OrderByDescending(x => x.Priority); // default sort order
-
         }
     }
 }
